@@ -1,0 +1,598 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    color: #ffffff;
+    background-color: #000000;
+}
+
+/* === HEADER / NAV === */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 20;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.9),
+            rgba(0, 0, 0, 0.3),
+            transparent);
+}
+
+.logo-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.logo-main {
+    font-size: 24px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.logo-main span {
+    color: #e27aff;
+}
+
+.logo-tagline {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #cccccc;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 15px;
+}
+
+.main-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    position: relative;
+}
+
+.main-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #e27aff;
+    transition: width 0.25s ease;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* Buttons */
+
+.btn {
+    font-family: inherit;
+    border-radius: 0;
+    padding: 10px 26px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid #e27aff;
+    background: transparent;
+    color: #ffffff;
+    transition: background 0.25s ease, color 0.25s ease,
+        box-shadow 0.25s ease, border-color 0.25s ease, transform 0.1s ease;
+}
+
+.btn-outline:hover {
+    background: rgba(226, 122, 255, 0.15);
+    box-shadow: 0 0 18px rgba(226, 122, 255, 0.5);
+}
+
+.btn-solid {
+    background: linear-gradient(135deg, #e27aff, #b050ff);
+    border-color: transparent;
+}
+
+.btn-solid:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 20px rgba(226, 122, 255, 0.8);
+}
+
+.btn .arrow {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+/* === HERO === */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 120px 60px 60px;
+    /* top padding leaves room for fixed header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #000000;
+    background-image: url("hero-bg.jpg");
+    /* <-- put your wave image here */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Optional colored overlay to intensify the purple look */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right,
+            rgba(226, 122, 255, 0.7),
+            transparent 50%),
+        radial-gradient(circle at bottom left,
+            rgba(124, 68, 255, 0.7),
+            transparent 55%);
+    mix-blend-mode: screen;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.9));
+    z-index: 1;
+}
+
+/* Main headline */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 80%;
+}
+
+.hero-content h1 {
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 300;
+    color: #dedede;
+}
+
+/* Bottom right CTA */
+.hero-bottom-cta {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+    font-size: 22px;
+    padding-top: 30px;
+}
+
+.hero-bottom-cta p {
+    font-weight: 300;
+}
+
+/* === PLACEHOLDER SECTIONS (for scrolling targets) === */
+
+.placeholder-section {
+    padding: 80px 60px;
+    background: #050505;
+    border-top: 1px solid #1a1a1a;
+}
+
+.placeholder-section:nth-of-type(even) {
+    background: #0b0b0b;
+}
+
+.placeholder-section h2 {
+    margin-bottom: 16px;
+}
+
+/* ---------------------------------------------------------
+   SERVICES SECTION
+--------------------------------------------------------- */
+.services {
+    background: #000;
+    padding: 80px 60px 110px;
+}
+
+.services-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.services-heading {
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 300;
+    line-height: 1.3;
+    color: #f5f5f5;
+    margin-bottom: 16px;
+}
+
+.services-tagline {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a0a0a0;
+}
+
+/* Cards layout */
+.service-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+}
+
+/* Base card */
+.service-card {
+    position: relative;
+    background: radial-gradient(circle at top left, #222 0%, #141414 45%, #111 100%);
+    border-radius: 26px;
+    padding: 26px 26px 24px;
+    border: 1px solid #2b2b2b;
+    color: #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+}
+
+/* subtle animated border glow on hover */
+.service-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card-body,
+.service-card-footer {
+    position: relative;
+    z-index: 1;
+}
+
+.service-card h3 {
+    font-size: 18px;
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+
+.service-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #d0d0d0;
+}
+
+/* footer row: icon + label */
+.service-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 26px;
+}
+
+/* Icon pill */
+.service-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 16px;
+    background: linear-gradient(140deg, #e27aff, #b050ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 18px rgba(226, 122, 255, 0.6);
+}
+
+/* Little “glyphs” using pure CSS */
+.icon-wave,
+.icon-bars,
+.icon-arrow {
+    display: block;
+    width: 22px;
+    height: 22px;
+    position: relative;
+}
+
+.icon-wave::before,
+.icon-wave::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    border: 2px solid #f5f3ff;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    transform: rotate(18deg);
+    opacity: 0.9;
+}
+
+.icon-wave::after {
+    transform: rotate(-18deg);
+    opacity: 0.6;
+}
+
+.icon-bars::before,
+.icon-bars::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    border-radius: 999px;
+}
+
+.icon-bars::before {
+    top: 5px;
+    height: 3px;
+    background: #fdfdfd;
+}
+
+.icon-bars::after {
+    bottom: 5px;
+    height: 3px;
+    background: rgba(250, 250, 250, 0.75);
+}
+
+/* angled arrow */
+.icon-arrow::before,
+.icon-arrow::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    background: #fdfdfd;
+}
+
+.icon-arrow::before {
+    width: 3px;
+    height: 16px;
+    left: 9px;
+    top: 3px;
+    transform: rotate(40deg);
+}
+
+.icon-arrow::after {
+    width: 8px;
+    height: 3px;
+    left: 9px;
+    bottom: 6px;
+    transform: rotate(40deg);
+}
+
+.service-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #a5a5a5;
+}
+
+/* Hover motion */
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+    border-color: rgba(226, 122, 255, 0.7);
+}
+
+
+
+/* ---------------------------------------------------------
+   FEATURE SWAP SECTION
+--------------------------------------------------------- */
+
+.feature-swap-section {
+  background: #000;
+  padding: 80px 60px 110px;
+  position: relative;
+}
+
+.feature-swap-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.feature-swap-title {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 300;
+  color: #f5f5f5;
+  margin-bottom: 10px;
+}
+
+.feature-swap-subtitle {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a0a0a0;
+}
+
+/* container for stacked cards */
+.card-swap-container {
+  position: relative;
+  margin-top: 46px;
+  height: 220px; /* visible area of stack */
+  perspective: 900px;
+  overflow: visible;
+}
+
+/* each card in the stack */
+.swap-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(420px, 90vw);
+  border-radius: 24px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  /* GSAP will set x/y/z, xPercent and yPercent */
+}
+
+.swap-card-inner {
+  border-radius: inherit;
+  overflow: hidden;
+  border: 1px solid #3a3a3a;
+  background: #191919;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+}
+
+/* top strip */
+.swap-card-tag {
+  padding: 10px 22px;
+  background: #111111;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #c5c5c5;
+}
+
+/* main feature area */
+.swap-card-main {
+  padding: 24px 26px 26px;
+  font-size: 22px;
+  font-weight: 500;
+  color: #f1f1f1;
+  background: #333333;
+}
+
+.swap-card-main--accent {
+  background: #a884c4;
+  color: #ffffff;
+}
+
+/* subtle shine on hover */
+.swap-card-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.18), transparent 55%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity 0.25s ease-out;
+  pointer-events: none;
+}
+
+.swap-card:hover .swap-card-inner::after {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === RESPONSIVE === */
+
+@media (max-width: 900px) {
+    .site-header {
+        padding: 14px 20px;
+    }
+
+    .hero {
+        padding: 110px 20px 40px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-bottom-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        font-size: 18px;
+    }
+
+    .main-nav {
+        gap: 16px;
+        font-size: 14px;
+    }
+
+    .logo-main {
+        font-size: 20px;
+    }
+
+    .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature-swap-section {
+    padding: 70px 20px 90px;
+  }
+
+  .card-swap-container {
+    height: 210px;
+  }
+}
+
+@media (max-width: 640px) {
+    .main-nav a {
+        display: none;
+        /* quick mobile simplification – you can replace with a menu later */
+    }
+
+    .services {
+    padding: 60px 20px 80px;
+  }
+
+  .services-heading {
+    font-size: 24px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-swap-container {
+    height: 190px;
+  }
+}
